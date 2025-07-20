@@ -1,3 +1,6 @@
+# ER Diagram
+
+```mermaid
 erDiagram
     %% Core Tenant Management
     TENANT {
@@ -393,3 +396,4 @@ erDiagram
     NOTIFICATION_TEMPLATE ||--o{ USER_NOTIFICATION : "generates notifications"
 
     WEBHOOK ||--o{ WEBHOOK_DELIVERY : "has many deliveries"
+```
