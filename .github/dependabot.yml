@@ -1,0 +1,56 @@
+version: 2
+updates:
+  # Enable version updates for Cargo dependencies
+  - package-ecosystem: "cargo"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+    # Allow both direct and indirect updates
+    allow:
+      - dependency-type: "direct"
+      - dependency-type: "indirect"
+    # Limit the number of open pull requests
+    open-pull-requests-limit: 25
+    # Group dependency updates to reduce PR noise
+    groups:
+      patch-updates:
+        patterns:
+          - "*"
+        update-types:
+          - "patch"
+      minor-updates:
+        patterns:
+          - "*"
+        update-types:
+          - "minor"
+    # Add labels to PRs
+    labels:
+      - "dependencies"
+      - "rust"
+    # Set PR reviewers
+    reviewers:
+      - "kishanmmohan"
+    assignees:
+      - "Gokul0305"
+    # Commit message options
+    commit-message:
+      prefix: "deps"
+      include: "scope"
+    # Rebase strategy
+    rebase-strategy: "auto"
+
+  # Enable version updates for GitHub Actions
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "06:00"
+    labels:
+      - "dependencies"
+      - "github-actions"
+    commit-message:
+      prefix: "ci"
+      include: "scope"

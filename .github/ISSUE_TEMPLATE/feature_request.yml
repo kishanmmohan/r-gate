@@ -1,0 +1,84 @@
+name: Feature Request
+description: Suggest a new feature for the IAM service
+title: "[FEATURE] "
+labels: ["enhancement", "needs-discussion"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a new feature for our IAM microservice!
+
+  - type: dropdown
+    id: component
+    attributes:
+      label: Component
+      description: Which component would this feature affect?
+      options:
+        - Authentication
+        - Authorization/RBAC
+        - User Management
+        - Multi-tenancy
+        - Identity Federation
+        - API/Integration
+        - Security/Audit
+        - Admin Console
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      description: How important is this feature?
+      options:
+        - Critical - Blocking for production use
+        - High - Important for user experience
+        - Medium - Nice to have
+        - Low - Future enhancement
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem Statement
+      description: What problem does this feature solve?
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Solution
+      description: Describe your proposed solution
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: Any alternative solutions you've considered
+
+  - type: textarea
+    id: use_cases
+    attributes:
+      label: Use Cases
+      description: Specific use cases where this feature would be helpful
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: compliance
+    attributes:
+      label: Compliance Requirements
+      description: Does this feature relate to compliance requirements?
+      options:
+        - label: GDPR compliance
+        - label: SOX compliance
+        - label: HIPAA compliance
+        - label: ISO 27001
+        - label: Other compliance requirement
