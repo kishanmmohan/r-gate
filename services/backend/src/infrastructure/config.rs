@@ -22,17 +22,14 @@ pub struct BaseSettings {
 impl BaseSettings{
 
     pub fn construct_db_url(&self) -> String {
-        let mut postgres_url = String::from("postgres://");
-        postgres_url.push_str(&self.postgres_user);
-        postgres_url.push_str(":");
-        postgres_url.push_str(&self.postgres_password);
-        postgres_url.push_str("@");
-        postgres_url.push_str(&self.postgres_host);
-        postgres_url.push_str(":");
-        postgres_url.push_str(&self.postgres_port);
-        postgres_url.push_str("/");
-        postgres_url.push_str(&self.postgres_db);
-        postgres_url
+        format!(
+            "postgres://{}:{}@{}:{}/{}",
+            self.postgres_user,
+            self.postgres_password,
+            self.postgres_host,
+            self.postgres_port,
+            self.postgres_db
+        )
     }
 }
 
@@ -49,7 +46,7 @@ fn default_postgres_user() -> String {
 }
 
 fn default_postgres_password() -> String {
-    "password".to_string()
+    "rgate".to_string()
 }
 
 
