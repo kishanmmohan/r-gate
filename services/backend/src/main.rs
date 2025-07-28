@@ -1,28 +1,18 @@
-use actix_web::{App, HttpResponse, HttpServer, Responder, get, post, web};
+mod presentation;
+use actix_web::{App, HttpServer};
+use actix_web::middleware::Logger;
+use crate::presentation::routers::health_routes::{routes as health_routes};
 
-#[get("/")]
-async fn hello() -> impl Responder {
-    HttpResponse::Ok().body("Hello world!")
-}
 
-#[post("/echo")]
-async fn echo(req_body: String) -> impl Responder {
-    HttpResponse::Ok().body(req_body)
-}
 
-async fn manual_hello() -> impl Responder {
-    HttpResponse::Ok().body("Hey there!")
-}
+
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
-    HttpServer::new(|| {
-        App::new()
-            .service(hello)
-            .service(echo)
-            .route("/hey", web::get().to(manual_hello))
-    })
-    .bind(("127.0.0.1", 8080))?
-    .run()
-    .await
+    HttpServer::new(move || {
+        App::new().wrap(Logger::default()).configure(health_routes)
+    }
+    ).bind("0.0.0.0:4444")?.run().await
+    
 }
+
